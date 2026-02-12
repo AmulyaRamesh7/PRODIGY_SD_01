@@ -12,9 +12,13 @@ Built using basic Python concepts like functions, conditionals, and exception ha
 
 EXAMPLE:
 Enter temperature value: 100
+
 Enter unit (C for Celsius, F for Fahrenheit, K for Kelvin): C
 
 Converted Temperatures:
+
 Celsius: 100.00 °C
+
 Fahrenheit: 212.00 °F
+
 Kelvin: 373.15 K
