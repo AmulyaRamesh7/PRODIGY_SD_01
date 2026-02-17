@@ -1,34 +1,45 @@
-def convert_temperature(value, unit):
-    unit = unit.lower()
+import streamlit as st
 
-    if unit == "c":
+# Page title
+st.set_page_config(page_title="Temperature Converter", page_icon="🌡️")
+
+st.title("🌡️ Temperature Conversion App")
+st.write("Convert temperatures between Celsius, Fahrenheit, and Kelvin.")
+
+# User input
+temperature = st.number_input("Enter Temperature Value:", value=0.0)
+
+unit = st.selectbox(
+    "Select Original Unit:",
+    ("Celsius", "Fahrenheit", "Kelvin")
+)
+
+# Conversion logic
+def convert_temperature(value, unit):
+    if unit == "Celsius":
         c = value
         f = (c * 9/5) + 32
         k = c + 273.15
-    elif unit == "f":
+
+    elif unit == "Fahrenheit":
         f = value
         c = (f - 32) * 5/9
         k = c + 273.15
-    elif unit == "k":
+
+    elif unit == "Kelvin":
         k = value
         c = k - 273.15
         f = (c * 9/5) + 32
-    else:
-        print("Invalid unit! Please enter C, F, or K.")
-        return
 
-    print("\nConverted Temperatures:")
-    print(f"Celsius: {c:.2f} °C")
-    print(f"Fahrenheit: {f:.2f} °F")
-    print(f"Kelvin: {k:.2f} K")
+    return c, f, k
 
 
-# User Input
-try:
-    temp_value = float(input("Enter temperature value: "))
-    temp_unit = input("Enter unit (C for Celsius, F for Fahrenheit, K for Kelvin): ")
+# Button
+if st.button("Convert"):
+    c, f, k = convert_temperature(temperature, unit)
 
-    convert_temperature(temp_value, temp_unit)
+    st.success("Converted Values:")
 
-except ValueError:
-    print("Please enter a valid numeric temperature.")
+    st.write(f"🌡️ Celsius: {c:.2f} °C")
+    st.write(f"🌡️ Fahrenheit: {f:.2f} °F")
+    st.write(f"🌡️ Kelvin: {k:.2f} K")
